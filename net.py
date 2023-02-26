@@ -1,6 +1,6 @@
 import math
 
-import dog_module as md
+import module as md
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -353,7 +353,7 @@ class StarGAN(nn.Module):
         # Generator outputs
         time_dim = x_s.shape[-1]
         n_mels = x_s.shape[1]
-        mel_masks = mel_masks[:, :mel_masks.shape[1]].unsqueeze(1).expand(-1, n_mels, time_dim)
+        mel_masks = mel_masks.unsqueeze(1).expand(-1, n_mels, time_dim)
         # t.masked_fill(new_mask.to("cpu"), 0.)
         # print("MASK", mel_masks.shape)
         # print("T", x_s.shape)
@@ -364,6 +364,7 @@ class StarGAN(nn.Module):
         xf_tt = self.gen(x_t, k_t, k_t)[:, :, :time_dim]
         xf_st = self.gen(x_s, k_t, k_s)[:, :, :time_dim]
 
+        # print(xf_ss.shape)
         xf_ss = xf_ss.masked_fill(mel_masks, 0.)
         xf_ts = xf_ts.masked_fill(mel_masks, 0.)
         xf_tt = xf_tt.masked_fill(mel_masks, 0.)

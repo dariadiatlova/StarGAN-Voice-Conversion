@@ -20,6 +20,6 @@ def main(source_path, target_path, resample_rate: int = 22050):
 
 
 if __name__ == "__main__":
-    source_path = "/root/storage/dasha/data/dog_dataset/adult_dog_44k"
-    target_path = "/root/storage/dasha/data/dog_dataset/adult_dog_22k"
+    source_path = "/root/storage/dasha/data/youtube/hleb/after_vad/48k_super_clean/"
+    target_path = "/root/storage/dasha/data/youtube/hleb/after_vad/22k_super_clean/"
     main(source_path, target_path)
